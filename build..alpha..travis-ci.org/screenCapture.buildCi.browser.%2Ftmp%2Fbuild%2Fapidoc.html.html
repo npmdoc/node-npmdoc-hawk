@@ -1,0 +1,3372 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/hueniverse/hawk#readme">hawk (v6.0.1)</a>
+</h1>
+<h4>HTTP Hawk Authentication Scheme</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hawk">module hawk</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hawk.</span>Error</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hawk.</span>client</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hawk.</span>crypto</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hawk.</span>error</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hawk.</span>server</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hawk.</span>sntp</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hawk.</span>uri</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hawk.</span>utils</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hawk.Error">module hawk.Error</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.badData">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>badData
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.badGateway">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>badGateway
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.badImplementation">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>badImplementation
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.badRequest">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>badRequest
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.clientTimeout">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>clientTimeout
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.conflict">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>conflict
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.create">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>create
+            <span class="apidocSignatureSpan">(statusCode, message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.entityTooLarge">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>entityTooLarge
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.expectationFailed">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>expectationFailed
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.forbidden">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>forbidden
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.gatewayTimeout">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>gatewayTimeout
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.illegal">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>illegal
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.internal">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>internal
+            <span class="apidocSignatureSpan">(message, data, statusCode)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.lengthRequired">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>lengthRequired
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.locked">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>locked
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.methodNotAllowed">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>methodNotAllowed
+            <span class="apidocSignatureSpan">(message, data, allow)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.notAcceptable">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>notAcceptable
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.notFound">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>notFound
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.notImplemented">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>notImplemented
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.paymentRequired">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>paymentRequired
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.preconditionFailed">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>preconditionFailed
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.preconditionRequired">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>preconditionRequired
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.proxyAuthRequired">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>proxyAuthRequired
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.rangeNotSatisfiable">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>rangeNotSatisfiable
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.resourceGone">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>resourceGone
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.serverUnavailable">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>serverUnavailable
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.teapot">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>teapot
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.tooManyRequests">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>tooManyRequests
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.unauthorized">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>unauthorized
+            <span class="apidocSignatureSpan">(message, scheme, attributes)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.unsupportedMediaType">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>unsupportedMediaType
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.uriTooLong">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>uriTooLong
+            <span class="apidocSignatureSpan">(message, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.Error.wrap">
+            function <span class="apidocSignatureSpan">hawk.Error.</span>wrap
+            <span class="apidocSignatureSpan">(error, statusCode, message)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hawk.client">module hawk.client</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.client.authenticate">
+            function <span class="apidocSignatureSpan">hawk.client.</span>authenticate
+            <span class="apidocSignatureSpan">(res, credentials, artifacts, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.client.getBewit">
+            function <span class="apidocSignatureSpan">hawk.client.</span>getBewit
+            <span class="apidocSignatureSpan">(uri, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.client.header">
+            function <span class="apidocSignatureSpan">hawk.client.</span>header
+            <span class="apidocSignatureSpan">(uri, method, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.client.message">
+            function <span class="apidocSignatureSpan">hawk.client.</span>message
+            <span class="apidocSignatureSpan">(host, port, message, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hawk.crypto">module hawk.crypto</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.crypto.calculateMac">
+            function <span class="apidocSignatureSpan">hawk.crypto.</span>calculateMac
+            <span class="apidocSignatureSpan">(type, credentials, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.crypto.calculatePayloadHash">
+            function <span class="apidocSignatureSpan">hawk.crypto.</span>calculatePayloadHash
+            <span class="apidocSignatureSpan">(payload, algorithm, contentType)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.crypto.calculateTsMac">
+            function <span class="apidocSignatureSpan">hawk.crypto.</span>calculateTsMac
+            <span class="apidocSignatureSpan">(ts, credentials)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.crypto.finalizePayloadHash">
+            function <span class="apidocSignatureSpan">hawk.crypto.</span>finalizePayloadHash
+            <span class="apidocSignatureSpan">(hash)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.crypto.generateNormalizedString">
+            function <span class="apidocSignatureSpan">hawk.crypto.</span>generateNormalizedString
+            <span class="apidocSignatureSpan">(type, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.crypto.initializePayloadHash">
+            function <span class="apidocSignatureSpan">hawk.crypto.</span>initializePayloadHash
+            <span class="apidocSignatureSpan">(algorithm, contentType)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.crypto.timestampMessage">
+            function <span class="apidocSignatureSpan">hawk.crypto.</span>timestampMessage
+            <span class="apidocSignatureSpan">(credentials, localtimeOffsetMsec)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hawk.crypto.</span>algorithms</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">hawk.crypto.</span>headerVersion</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hawk.server">module hawk.server</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.server.authenticate">
+            function <span class="apidocSignatureSpan">hawk.server.</span>authenticate
+            <span class="apidocSignatureSpan">(req, credentialsFunc, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.server.authenticateBewit">
+            function <span class="apidocSignatureSpan">hawk.server.</span>authenticateBewit
+            <span class="apidocSignatureSpan">(req, credentialsFunc, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.server.authenticateMessage">
+            function <span class="apidocSignatureSpan">hawk.server.</span>authenticateMessage
+            <span class="apidocSignatureSpan">(host, port, message, authorization, credentialsFunc, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.server.authenticatePayload">
+            function <span class="apidocSignatureSpan">hawk.server.</span>authenticatePayload
+            <span class="apidocSignatureSpan">(payload, credentials, artifacts, contentType)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.server.authenticatePayloadHash">
+            function <span class="apidocSignatureSpan">hawk.server.</span>authenticatePayloadHash
+            <span class="apidocSignatureSpan">(calculatedHash, artifacts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.server.header">
+            function <span class="apidocSignatureSpan">hawk.server.</span>header
+            <span class="apidocSignatureSpan">(credentials, artifacts, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hawk.sntp">module hawk.sntp</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.sntp.isLive">
+            function <span class="apidocSignatureSpan">hawk.sntp.</span>isLive
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.sntp.now">
+            function <span class="apidocSignatureSpan">hawk.sntp.</span>now
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.sntp.offset">
+            function <span class="apidocSignatureSpan">hawk.sntp.</span>offset
+            <span class="apidocSignatureSpan">(options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.sntp.start">
+            function <span class="apidocSignatureSpan">hawk.sntp.</span>start
+            <span class="apidocSignatureSpan">(options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.sntp.stop">
+            function <span class="apidocSignatureSpan">hawk.sntp.</span>stop
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.sntp.time">
+            function <span class="apidocSignatureSpan">hawk.sntp.</span>time
+            <span class="apidocSignatureSpan">(options, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hawk.uri">module hawk.uri</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.uri.authenticate">
+            function <span class="apidocSignatureSpan">hawk.uri.</span>authenticate
+            <span class="apidocSignatureSpan">(req, credentialsFunc, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.uri.getBewit">
+            function <span class="apidocSignatureSpan">hawk.uri.</span>getBewit
+            <span class="apidocSignatureSpan">(uri, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hawk.utils">module hawk.utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.utils.now">
+            function <span class="apidocSignatureSpan">hawk.utils.</span>now
+            <span class="apidocSignatureSpan">(localtimeOffsetMsec)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.utils.nowSecs">
+            function <span class="apidocSignatureSpan">hawk.utils.</span>nowSecs
+            <span class="apidocSignatureSpan">(localtimeOffsetMsec)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.utils.parseAuthorizationHeader">
+            function <span class="apidocSignatureSpan">hawk.utils.</span>parseAuthorizationHeader
+            <span class="apidocSignatureSpan">(header, keys)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.utils.parseContentType">
+            function <span class="apidocSignatureSpan">hawk.utils.</span>parseContentType
+            <span class="apidocSignatureSpan">(header)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.utils.parseHost">
+            function <span class="apidocSignatureSpan">hawk.utils.</span>parseHost
+            <span class="apidocSignatureSpan">(req, hostHeaderName)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.utils.parseRequest">
+            function <span class="apidocSignatureSpan">hawk.utils.</span>parseRequest
+            <span class="apidocSignatureSpan">(req, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.utils.unauthorized">
+            function <span class="apidocSignatureSpan">hawk.utils.</span>unauthorized
+            <span class="apidocSignatureSpan">(message, attributes)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hawk.utils.version">
+            function <span class="apidocSignatureSpan">hawk.utils.</span>version
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hawk.utils.</span>limits</span>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hawk" id="apidoc.module.hawk">module hawk</a></h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hawk.Error" id="apidoc.module.hawk.Error">module hawk.Error</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.badData" id="apidoc.element.hawk.Error.badData">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>badData
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">badData = function (message, data) {
+
+    return internals.create(422, message, data, exports.badData);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.badGateway" id="apidoc.element.hawk.Error.badGateway">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>badGateway
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">badGateway = function (message, data) {
+
+    return internals.serverError(message, data, 502, exports.badGateway);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.badImplementation" id="apidoc.element.hawk.Error.badImplementation">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>badImplementation
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">badImplementation = function (message, data) {
+
+    const err = internals.serverError(message, data, 500, exports.badImplementation);
+    err.isDeveloperError = true;
+    return err;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.badRequest" id="apidoc.element.hawk.Error.badRequest">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>badRequest
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">badRequest = function (message, data) {
+
+    return internals.create(400, message, data, exports.badRequest);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.clientTimeout" id="apidoc.element.hawk.Error.clientTimeout">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>clientTimeout
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">clientTimeout = function (message, data) {
+
+    return internals.create(408, message, data, exports.clientTimeout);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.conflict" id="apidoc.element.hawk.Error.conflict">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>conflict
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">conflict = function (message, data) {
+
+    return internals.create(409, message, data, exports.conflict);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.create" id="apidoc.element.hawk.Error.create">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>create
+        <span class="apidocSignatureSpan">(statusCode, message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">create = function (statusCode, message, data) {
+
+    return internals.create(statusCode, message, data, exports.create);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+
+    return normalized;
+},
+
+calculatePayloadHash: function (payload, algorithm, contentType) {
+
+    const hash = CryptoJS.algo[algorithm.toUpperCase()].<span class="apidocCodeKeywordSpan">create</span>();
+    hash.update('hawk.' + hawk.crypto.headerVersion + '.payload\n');
+    hash.update(hawk.utils.parseContentType(contentType) + '\n');
+    hash.update(payload);
+    hash.update('\n');
+    return hash.finalize().toString(CryptoJS.enc.Base64);
+},
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.entityTooLarge" id="apidoc.element.hawk.Error.entityTooLarge">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>entityTooLarge
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">entityTooLarge = function (message, data) {
+
+    return internals.create(413, message, data, exports.entityTooLarge);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.expectationFailed" id="apidoc.element.hawk.Error.expectationFailed">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>expectationFailed
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">expectationFailed = function (message, data) {
+
+    return internals.create(417, message, data, exports.expectationFailed);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.forbidden" id="apidoc.element.hawk.Error.forbidden">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>forbidden
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">forbidden = function (message, data) {
+
+    return internals.create(403, message, data, exports.forbidden);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.gatewayTimeout" id="apidoc.element.hawk.Error.gatewayTimeout">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>gatewayTimeout
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">gatewayTimeout = function (message, data) {
+
+    return internals.serverError(message, data, 504, exports.gatewayTimeout);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.illegal" id="apidoc.element.hawk.Error.illegal">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>illegal
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">illegal = function (message, data) {
+
+    return internals.create(451, message, data, exports.illegal);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.internal" id="apidoc.element.hawk.Error.internal">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>internal
+        <span class="apidocSignatureSpan">(message, data, statusCode)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">internal = function (message, data, statusCode) {
+
+    return internals.serverError(message, data, statusCode, exports.internal);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.lengthRequired" id="apidoc.element.hawk.Error.lengthRequired">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>lengthRequired
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lengthRequired = function (message, data) {
+
+    return internals.create(411, message, data, exports.lengthRequired);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.locked" id="apidoc.element.hawk.Error.locked">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>locked
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">locked = function (message, data) {
+
+    return internals.create(423, message, data, exports.locked);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.methodNotAllowed" id="apidoc.element.hawk.Error.methodNotAllowed">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>methodNotAllowed
+        <span class="apidocSignatureSpan">(message, data, allow)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">methodNotAllowed = function (message, data, allow) {
+
+    const err = internals.create(405, message, data, exports.methodNotAllowed);
+
+    if (typeof allow === 'string') {
+        allow = [allow];
+    }
+
+    if (Array.isArray(allow)) {
+        err.output.headers.Allow = allow.join(', ');
+    }
+
+    return err;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.notAcceptable" id="apidoc.element.hawk.Error.notAcceptable">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>notAcceptable
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">notAcceptable = function (message, data) {
+
+    return internals.create(406, message, data, exports.notAcceptable);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.notFound" id="apidoc.element.hawk.Error.notFound">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>notFound
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">notFound = function (message, data) {
+
+    return internals.create(404, message, data, exports.notFound);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.notImplemented" id="apidoc.element.hawk.Error.notImplemented">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>notImplemented
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">notImplemented = function (message, data) {
+
+    return internals.serverError(message, data, 501, exports.notImplemented);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.paymentRequired" id="apidoc.element.hawk.Error.paymentRequired">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>paymentRequired
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">paymentRequired = function (message, data) {
+
+    return internals.create(402, message, data, exports.paymentRequired);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.preconditionFailed" id="apidoc.element.hawk.Error.preconditionFailed">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>preconditionFailed
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">preconditionFailed = function (message, data) {
+
+    return internals.create(412, message, data, exports.preconditionFailed);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.preconditionRequired" id="apidoc.element.hawk.Error.preconditionRequired">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>preconditionRequired
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">preconditionRequired = function (message, data) {
+
+    return internals.create(428, message, data, exports.preconditionRequired);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.proxyAuthRequired" id="apidoc.element.hawk.Error.proxyAuthRequired">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>proxyAuthRequired
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">proxyAuthRequired = function (message, data) {
+
+    return internals.create(407, message, data, exports.proxyAuthRequired);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.rangeNotSatisfiable" id="apidoc.element.hawk.Error.rangeNotSatisfiable">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>rangeNotSatisfiable
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">rangeNotSatisfiable = function (message, data) {
+
+    return internals.create(416, message, data, exports.rangeNotSatisfiable);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.resourceGone" id="apidoc.element.hawk.Error.resourceGone">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>resourceGone
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">resourceGone = function (message, data) {
+
+    return internals.create(410, message, data, exports.resourceGone);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.serverUnavailable" id="apidoc.element.hawk.Error.serverUnavailable">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>serverUnavailable
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">serverUnavailable = function (message, data) {
+
+    return internals.serverError(message, data, 503, exports.serverUnavailable);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.teapot" id="apidoc.element.hawk.Error.teapot">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>teapot
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">teapot = function (message, data) {
+
+    return internals.create(418, message, data, exports.teapot);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.tooManyRequests" id="apidoc.element.hawk.Error.tooManyRequests">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>tooManyRequests
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">tooManyRequests = function (message, data) {
+
+    return internals.create(429, message, data, exports.tooManyRequests);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.unauthorized" id="apidoc.element.hawk.Error.unauthorized">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>unauthorized
+        <span class="apidocSignatureSpan">(message, scheme, attributes)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">unauthorized = function (message, scheme, attributes) {          // Or function (message, wwwAuthenticate[])
+
+    const err = internals.create(401, message, undefined, exports.unauthorized);
+
+    if (!scheme) {
+        return err;
+    }
+
+    let wwwAuthenticate = '';
+
+    if (typeof scheme === 'string') {
+
+        // function (message, scheme, attributes)
+
+        wwwAuthenticate = scheme;
+
+        if (attributes || message) {
+            err.output.payload.attributes = {};
+        }
+
+        if (attributes) {
+            if (typeof attributes === 'string') {
+                wwwAuthenticate = wwwAuthenticate + ' ' + Hoek.escapeHeaderAttribute(attributes);
+                err.output.payload.attributes = attributes;
+            }
+            else {
+                const names = Object.keys(attributes);
+                for (let i = 0; i &lt; names.length; ++i) {
+                    const name = names[i];
+                    if (i) {
+                        wwwAuthenticate = wwwAuthenticate + ',';
+                    }
+
+                    let value = attributes[name];
+                    if (value === null ||
+                        value === undefined) {              // Value can be zero
+
+                        value = '';
+                    }
+                    wwwAuthenticate = wwwAuthenticate + ' ' + name + '="' + Hoek.escapeHeaderAttribute(value.toString()) + '"';
+                    err.output.payload.attributes[name] = value;
+                }
+            }
+        }
+
+
+        if (message) {
+            if (attributes) {
+                wwwAuthenticate = wwwAuthenticate + ',';
+            }
+            wwwAuthenticate = wwwAuthenticate + ' error="' + Hoek.escapeHeaderAttribute(message) + '"';
+            err.output.payload.attributes.error = message;
+        }
+        else {
+            err.isMissing = true;
+        }
+    }
+    else {
+
+        // function (message, wwwAuthenticate[])
+
+        const wwwArray = scheme;
+        for (let i = 0; i &lt; wwwArray.length; ++i) {
+            if (i) {
+                wwwAuthenticate = wwwAuthenticate + ', ';
+            }
+
+            wwwAuthenticate = wwwAuthenticate + wwwArray[i];
+        }
+    }
+
+    err.output.headers['WWW-Authenticate'] = wwwAuthenticate;
+
+    return err;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.unsupportedMediaType" id="apidoc.element.hawk.Error.unsupportedMediaType">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>unsupportedMediaType
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">unsupportedMediaType = function (message, data) {
+
+    return internals.create(415, message, data, exports.unsupportedMediaType);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.uriTooLong" id="apidoc.element.hawk.Error.uriTooLong">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>uriTooLong
+        <span class="apidocSignatureSpan">(message, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">uriTooLong = function (message, data) {
+
+    return internals.create(414, message, data, exports.uriTooLong);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.Error.wrap" id="apidoc.element.hawk.Error.wrap">
+        function <span class="apidocSignatureSpan">hawk.Error.</span>wrap
+        <span class="apidocSignatureSpan">(error, statusCode, message)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">wrap = function (error, statusCode, message) {
+
+    Hoek.assert(error instanceof Error, 'Cannot wrap non-Error object');
+    Hoek.assert(!error.isBoom || (!statusCode &amp;&amp; !message), 'Cannot provide statusCode or message with boom error');
+
+    return (error.isBoom ? error : internals.initialize(error, statusCode || 500, message));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hawk.client" id="apidoc.module.hawk.client">module hawk.client</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.client.authenticate" id="apidoc.element.hawk.client.authenticate">
+        function <span class="apidocSignatureSpan">hawk.client.</span>authenticate
+        <span class="apidocSignatureSpan">(res, credentials, artifacts, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">authenticate = function (res, credentials, artifacts, options, callback) {
+
+    artifacts = Hoek.clone(artifacts);
+    options = options || {};
+
+    let wwwAttributes = null;
+    let serverAuthAttributes = null;
+
+    const finalize = function (err) {
+
+        if (callback) {
+            const headers = {
+                'www-authenticate': wwwAttributes,
+                'server-authorization': serverAuthAttributes
+            };
+
+            return callback(err, headers);
+        }
+
+        return !err;
+    };
+
+    if (res.headers['www-authenticate']) {
+
+        // Parse HTTP WWW-Authenticate header
+
+        wwwAttributes = Utils.parseAuthorizationHeader(res.headers['www-authenticate'], ['ts', 'tsm', 'error']);
+        if (wwwAttributes instanceof Error) {
+            wwwAttributes = null;
+            return finalize(new Error('Invalid WWW-Authenticate header'));
+        }
+
+        // Validate server timestamp (not used to update clock since it is done via the SNPT client)
+
+        if (wwwAttributes.ts) {
+            const tsm = Crypto.calculateTsMac(wwwAttributes.ts, credentials);
+            if (tsm !== wwwAttributes.tsm) {
+                return finalize(new Error('Invalid server timestamp hash'));
+            }
+        }
+    }
+
+    // Parse HTTP Server-Authorization header
+
+    if (!res.headers['server-authorization'] &amp;&amp;
+        !options.required) {
+
+        return finalize();
+    }
+
+    serverAuthAttributes = Utils.parseAuthorizationHeader(res.headers['server-authorization'], ['mac', 'ext', 'hash']);
+    if (serverAuthAttributes instanceof Error) {
+        serverAuthAttributes = null;
+        return finalize(new Error('Invalid Server-Authorization header'));
+    }
+
+    artifacts.ext = serverAuthAttributes.ext;
+    artifacts.hash = serverAuthAttributes.hash;
+
+    const mac = Crypto.calculateMac('response', credentials, artifacts);
+    if (mac !== serverAuthAttributes.mac) {
+        return finalize(new Error('Bad response mac'));
+    }
+
+    if (!options.payload &amp;&amp;
+        options.payload !== '') {
+
+        return finalize();
+    }
+
+    if (!serverAuthAttributes.hash) {
+        return finalize(new Error('Missing response hash attribute'));
+    }
+
+    const calculatedHash = Crypto.calculatePayloadHash(options.payload, credentials.algorithm, res.headers['content-type']);
+    if (calculatedHash !== serverAuthAttributes.hash) {
+        return finalize(new Error('Bad response payload mac'));
+    }
+
+    return finalize();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// Create HTTP server
+
+const handler = function (req, res) {
+
+    // Authenticate incoming request
+
+    Hawk.server.<span class="apidocCodeKeywordSpan">authenticate</span>(req, credentialsFunc, {}, (err, credentials, artifacts) =&amp;#
+x3e; {
+
+// Prepare response
+
+const payload = (!err ? `Hello ${credentials.user} ${artifacts.ext}` : 'Shoosh!');
+const headers = { 'Content-Type': 'text/plain' };
+
+// Generate Server-Authorization response header
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.client.getBewit" id="apidoc.element.hawk.client.getBewit">
+        function <span class="apidocSignatureSpan">hawk.client.</span>getBewit
+        <span class="apidocSignatureSpan">(uri, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getBewit = function (uri, options) {
+
+    // Validate inputs
+
+    if (!uri ||
+        (typeof uri !== 'string' &amp;&amp; typeof uri !== 'object') ||
+        !options ||
+        typeof options !== 'object' ||
+        !options.ttlSec) {
+
+        return '';
+    }
+
+    options.ext = (options.ext === null || options.ext === undefined ? '' : options.ext);       // Zero is valid value
+
+    // Application time
+
+    const now = Utils.now(options.localtimeOffsetMsec);
+
+    // Validate credentials
+
+    const credentials = options.credentials;
+    if (!credentials ||
+        !credentials.id ||
+        !credentials.key ||
+        !credentials.algorithm) {
+
+        return '';
+    }
+
+    if (Crypto.algorithms.indexOf(credentials.algorithm) === -1) {
+        return '';
+    }
+
+    // Parse URI
+
+    if (typeof uri === 'string') {
+        uri = Url.parse(uri);
+    }
+
+    // Calculate signature
+
+    const exp = Math.floor(now / 1000) + options.ttlSec;
+    const mac = Crypto.calculateMac('bewit', credentials, {
+        ts: exp,
+        nonce: '',
+        method: 'GET',
+        resource: uri.pathname + (uri.search || ''),                            // Maintain trailing '?'
+        host: uri.hostname,
+        port: uri.port || (uri.protocol === 'http:' ? 80 : 443),
+        ext: options.ext
+    });
+
+    // Construct bewit: id\exp\mac\ext
+
+    const bewit = credentials.id + '\\' + exp + '\\' + mac + '\\' + options.ext;
+    return Hoek.base64urlEncode(bewit);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: 'werxhqb98rpaxn39848xrunpaw3489ruxnpa98w4rxn',
+    algorithm: 'sha256'
+}
+
+// Generate bewit
+
+const duration = 60 * 5;      // 5 Minutes
+const bewit = Hawk.uri.<span class="apidocCodeKeywordSpan">getBewit</span>('http://example.com:8000/resource/1?b=1&amp;a=2
+', { credentials: credentials, ttlSec: duration, ext: 'some-app-data' });
+const uri = 'http://example.com:8000/resource/1?b=1&amp;a=2' + '&amp;bewit=' + bewit;
+
+// Output URI
+
+console.log('URI: ' + uri);
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.client.header" id="apidoc.element.hawk.client.header">
+        function <span class="apidocSignatureSpan">hawk.client.</span>header
+        <span class="apidocSignatureSpan">(uri, method, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">header = function (uri, method, options) {
+
+    const result = {
+        field: '',
+        artifacts: {}
+    };
+
+    // Validate inputs
+
+    if (!uri || (typeof uri !== 'string' &amp;&amp; typeof uri !== 'object') ||
+        !method || typeof method !== 'string' ||
+        !options || typeof options !== 'object') {
+
+        result.err = 'Invalid argument type';
+        return result;
+    }
+
+    // Application time
+
+    const timestamp = options.timestamp || Utils.nowSecs(options.localtimeOffsetMsec);
+
+    // Validate credentials
+
+    const credentials = options.credentials;
+    if (!credentials ||
+        !credentials.id ||
+        !credentials.key ||
+        !credentials.algorithm) {
+
+        result.err = 'Invalid credential object';
+        return result;
+    }
+
+    if (Crypto.algorithms.indexOf(credentials.algorithm) === -1) {
+        result.err = 'Unknown algorithm';
+        return result;
+    }
+
+    // Parse URI
+
+    if (typeof uri === 'string') {
+        uri = Url.parse(uri);
+    }
+
+    // Calculate signature
+
+    const artifacts = {
+        ts: timestamp,
+        nonce: options.nonce || Cryptiles.randomString(6),
+        method,
+        resource: uri.pathname + (uri.search || ''),                            // Maintain trailing '?'
+        host: uri.hostname,
+        port: uri.port || (uri.protocol === 'http:' ? 80 : 443),
+        hash: options.hash,
+        ext: options.ext,
+        app: options.app,
+        dlg: options.dlg
+    };
+
+    result.artifacts = artifacts;
+
+    // Calculate payload hash
+
+    if (!artifacts.hash &amp;&amp;
+        (options.payload || options.payload === '')) {
+
+        artifacts.hash = Crypto.calculatePayloadHash(options.payload, credentials.algorithm, options.contentType);
+    }
+
+    const mac = Crypto.calculateMac('header', credentials, artifacts);
+
+    // Construct header
+
+    const hasExt = artifacts.ext !== null &amp;&amp; artifacts.ext !== undefined &amp;&amp; artifacts.ext !== '';       // Other falsey values allowed
+    let header = 'Hawk id="' + credentials.id +
+                 '", ts="' + artifacts.ts +
+                 '", nonce="' + artifacts.nonce +
+                 (artifacts.hash ? '", hash="' + artifacts.hash : '') +
+                 (hasExt ? '", ext="' + Hoek.escapeHeaderAttribute(artifacts.ext) : '') +
+                 '", mac="' + mac + '"';
+
+    if (artifacts.app) {
+        header = header + ', app="' + artifacts.app +
+                  (artifacts.dlg ? '", dlg="' + artifacts.dlg : '') + '"';
+    }
+
+    result.field = header;
+
+    return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    // Prepare response
+
+    const payload = (!err ? `Hello ${credentials.user} ${artifacts.ext}` : 'Shoosh!');
+    const headers = { 'Content-Type': 'text/plain' };
+
+    // Generate Server-Authorization response header
+
+    const header = Hawk.server.<span class="apidocCodeKeywordSpan">header</span>(credentials, artifacts, { payload, contentType:
+headers['Content-Type'] });
+    headers['Server-Authorization'] = header;
+
+    // Send the response back
+
+    res.writeHead(!err ? 200 : 401, headers);
+    res.end(payload);
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.client.message" id="apidoc.element.hawk.client.message">
+        function <span class="apidocSignatureSpan">hawk.client.</span>message
+        <span class="apidocSignatureSpan">(host, port, message, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">message = function (host, port, message, options) {
+
+    // Validate inputs
+
+    if (!host || typeof host !== 'string' ||
+        !port || typeof port !== 'number' ||
+        message === null || message === undefined || typeof message !== 'string' ||
+        !options || typeof options !== 'object') {
+
+        return null;
+    }
+
+    // Application time
+
+    const timestamp = options.timestamp || Utils.nowSecs(options.localtimeOffsetMsec);
+
+    // Validate credentials
+
+    const credentials = options.credentials;
+    if (!credentials ||
+        !credentials.id ||
+        !credentials.key ||
+        !credentials.algorithm) {
+
+        // Invalid credential object
+        return null;
+    }
+
+    if (Crypto.algorithms.indexOf(credentials.algorithm) === -1) {
+        return null;
+    }
+
+    // Calculate signature
+
+    const artifacts = {
+        ts: timestamp,
+        nonce: options.nonce || Cryptiles.randomString(6),
+        host,
+        port,
+        hash: Crypto.calculatePayloadHash(message, credentials.algorithm)
+    };
+
+    // Construct authorization
+
+    const result = {
+        id: credentials.id,
+        ts: artifacts.ts,
+        nonce: artifacts.nonce,
+        hash: artifacts.hash,
+        mac: Crypto.calculateMac('message', credentials, artifacts)
+    };
+
+    return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hawk.crypto" id="apidoc.module.hawk.crypto">module hawk.crypto</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.crypto.calculateMac" id="apidoc.element.hawk.crypto.calculateMac">
+        function <span class="apidocSignatureSpan">hawk.crypto.</span>calculateMac
+        <span class="apidocSignatureSpan">(type, credentials, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">calculateMac = function (type, credentials, options) {
+
+    const normalized = exports.generateNormalizedString(type, options);
+
+    const hmac = Crypto.createHmac(credentials.algorithm, credentials.key).update(normalized);
+    const digest = hmac.digest('base64');
+    return digest;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+if (!artifacts.hash &amp;&amp;
+    (options.payload || options.payload === '')) {
+
+    artifacts.hash = hawk.crypto.calculatePayloadHash(options.payload, credentials.algorithm, options.contentType);
+}
+
+const mac = hawk.crypto.<span class="apidocCodeKeywordSpan">calculateMac</span>('header', credentials, artifacts);
+
+// Construct header
+
+const hasExt = artifacts.ext !== null &amp;&amp; artifacts.ext !== undefined &amp;&amp; artifacts.ext !== '';       //
+Other falsey values allowed
+let header = 'Hawk id="' + credentials.id +
+             '", ts="' + artifacts.ts +
+             '", nonce="' + artifacts.nonce +
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.crypto.calculatePayloadHash" id="apidoc.element.hawk.crypto.calculatePayloadHash">
+        function <span class="apidocSignatureSpan">hawk.crypto.</span>calculatePayloadHash
+        <span class="apidocSignatureSpan">(payload, algorithm, contentType)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">calculatePayloadHash = function (payload, algorithm, contentType) {
+
+    const hash = exports.initializePayloadHash(algorithm, contentType);
+    hash.update(payload || '');
+    return exports.finalizePayloadHash(hash);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+result.artifacts = artifacts;
+
+// Calculate payload hash
+
+if (!artifacts.hash &amp;&amp;
+    (options.payload || options.payload === '')) {
+
+    artifacts.hash = hawk.crypto.<span class="apidocCodeKeywordSpan">calculatePayloadHash</span>(options.payload, credentials.algorithm
+, options.contentType);
+}
+
+const mac = hawk.crypto.calculateMac('header', credentials, artifacts);
+
+// Construct header
+
+const hasExt = artifacts.ext !== null &amp;&amp; artifacts.ext !== undefined &amp;&amp; artifacts.ext !== '';       //
+Other falsey values allowed
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.crypto.calculateTsMac" id="apidoc.element.hawk.crypto.calculateTsMac">
+        function <span class="apidocSignatureSpan">hawk.crypto.</span>calculateTsMac
+        <span class="apidocSignatureSpan">(ts, credentials)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">calculateTsMac = function (ts, credentials) {
+
+    const hmac = Crypto.createHmac(credentials.algorithm, credentials.key);
+    hmac.update('hawk.' + exports.headerVersion + '.ts\n' + ts + '\n');
+    return hmac.digest('base64');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    const wwwAttributes = hawk.utils.parseAuthorizationHeader(wwwAuthenticate, ['ts', 'tsm', 'error'
+;]);
+    if (!wwwAttributes) {
+        return false;
+    }
+
+    if (wwwAttributes.ts) {
+        const tsm = hawk.crypto.<span class="apidocCodeKeywordSpan">calculateTsMac</span>(wwwAttributes.ts, credentials);
+        if (tsm !== wwwAttributes.tsm) {
+            return false;
+        }
+
+        hawk.utils.setNtpSecOffset(wwwAttributes.ts - Math.floor(Date.now() / 1000));      // Keep offset at 1 second precision
+    }
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.crypto.finalizePayloadHash" id="apidoc.element.hawk.crypto.finalizePayloadHash">
+        function <span class="apidocSignatureSpan">hawk.crypto.</span>finalizePayloadHash
+        <span class="apidocSignatureSpan">(hash)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">finalizePayloadHash = function (hash) {
+
+    hash.update('\n');
+    return hash.digest('base64');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.crypto.generateNormalizedString" id="apidoc.element.hawk.crypto.generateNormalizedString">
+        function <span class="apidocSignatureSpan">hawk.crypto.</span>generateNormalizedString
+        <span class="apidocSignatureSpan">(type, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">generateNormalizedString = function (type, options) {
+
+    let resource = options.resource || '';
+    if (resource &amp;&amp;
+        resource[0] !== '/') {
+
+        const url = Url.parse(resource, false);
+        resource = url.path;                        // Includes query
+    }
+
+    let normalized = 'hawk.' + exports.headerVersion + '.' + type + '\n' +
+                     options.ts + '\n' +
+                     options.nonce + '\n' +
+                     (options.method || '').toUpperCase() + '\n' +
+                     resource + '\n' +
+                     options.host.toLowerCase() + '\n' +
+                     options.port + '\n' +
+                     (options.hash || '') + '\n';
+
+    if (options.ext) {
+        normalized = normalized + options.ext.replace('\\', '\\\\').replace('\n', '\\n');
+    }
+
+    normalized = normalized + '\n';
+
+    if (options.app) {
+        normalized = normalized + options.app + '\n' +
+                                  (options.dlg || '') + '\n';
+    }
+
+    return normalized;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+headerVersion: '1',
+
+algorithms: ['sha1', 'sha256'],
+
+calculateMac: function (type, credentials, options) {
+
+    const normalized = hawk.crypto.<span class="apidocCodeKeywordSpan">generateNormalizedString</span>(type, options);
+
+    const hmac = CryptoJS['Hmac' + credentials.algorithm.toUpperCase()](normalized, credentials.key);
+    return hmac.toString(CryptoJS.enc.Base64);
+},
+
+generateNormalizedString: function (type, options) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.crypto.initializePayloadHash" id="apidoc.element.hawk.crypto.initializePayloadHash">
+        function <span class="apidocSignatureSpan">hawk.crypto.</span>initializePayloadHash
+        <span class="apidocSignatureSpan">(algorithm, contentType)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">initializePayloadHash = function (algorithm, contentType) {
+
+    const hash = Crypto.createHash(algorithm);
+    hash.update('hawk.' + exports.headerVersion + '.payload\n');
+    hash.update(Utils.parseContentType(contentType) + '\n');
+    return hash;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.crypto.timestampMessage" id="apidoc.element.hawk.crypto.timestampMessage">
+        function <span class="apidocSignatureSpan">hawk.crypto.</span>timestampMessage
+        <span class="apidocSignatureSpan">(credentials, localtimeOffsetMsec)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">timestampMessage = function (credentials, localtimeOffsetMsec) {
+
+    const now = Utils.nowSecs(localtimeOffsetMsec);
+    const tsm = exports.calculateTsMac(now, credentials);
+    return { ts: now, tsm };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hawk.server" id="apidoc.module.hawk.server">module hawk.server</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.server.authenticate" id="apidoc.element.hawk.server.authenticate">
+        function <span class="apidocSignatureSpan">hawk.server.</span>authenticate
+        <span class="apidocSignatureSpan">(req, credentialsFunc, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">authenticate = function (req, credentialsFunc, options, callback) {
+
+    callback = Hoek.nextTick(callback);
+
+    // Default options
+
+    options.nonceFunc = options.nonceFunc || internals.nonceFunc;
+    options.timestampSkewSec = options.timestampSkewSec || 60;                                                  // 60 seconds
+
+    // Application time
+
+    const now = Utils.now(options.localtimeOffsetMsec);                           // Measure now before any other processing
+
+    // Convert node Http request object to a request configuration object
+
+    const request = Utils.parseRequest(req, options);
+    if (request instanceof Error) {
+        return callback(Boom.badRequest(request.message));
+    }
+
+    // Parse HTTP Authorization header
+
+    const attributes = Utils.parseAuthorizationHeader(request.authorization);
+    if (attributes instanceof Error) {
+        return callback(attributes);
+    }
+
+    // Construct artifacts container
+
+    const artifacts = {
+        method: request.method,
+        host: request.host,
+        port: request.port,
+        resource: request.url,
+        ts: attributes.ts,
+        nonce: attributes.nonce,
+        hash: attributes.hash,
+        ext: attributes.ext,
+        app: attributes.app,
+        dlg: attributes.dlg,
+        mac: attributes.mac,
+        id: attributes.id
+    };
+
+    // Verify required header attributes
+
+    if (!attributes.id ||
+        !attributes.ts ||
+        !attributes.nonce ||
+        !attributes.mac) {
+
+        return callback(Boom.badRequest('Missing attributes'), null, artifacts);
+    }
+
+    // Fetch Hawk credentials
+
+    credentialsFunc(attributes.id, (err, credentials) =&gt; {
+
+        if (err) {
+            return callback(err, credentials || null, artifacts);
+        }
+
+        if (!credentials) {
+            return callback(Utils.unauthorized('Unknown credentials'), null, artifacts);
+        }
+
+        if (!credentials.key ||
+            !credentials.algorithm) {
+
+            return callback(Boom.internal('Invalid credentials'), credentials, artifacts);
+        }
+
+        if (Crypto.algorithms.indexOf(credentials.algorithm) === -1) {
+            return callback(Boom.internal('Unknown algorithm'), credentials, artifacts);
+        }
+
+        // Calculate MAC
+
+        const mac = Crypto.calculateMac('header', credentials, artifacts);
+        if (!Cryptiles.fixedTimeComparison(mac, attributes.mac)) {
+            return callback(Utils.unauthorized('Bad mac'), credentials, artifacts);
+        }
+
+        // Check payload hash
+
+        if (options.payload ||
+            options.payload === '') {
+
+            if (!attributes.hash) {
+                return callback(Utils.unauthorized('Missing required payload hash'), credentials, artifacts);
+            }
+
+            const hash = Crypto.calculatePayloadHash(options.payload, credentials.algorithm, request.contentType);
+            if (!Cryptiles.fixedTimeComparison(hash, attributes.hash)) {
+                return callback(Utils.unauthorized('Bad payload hash'), credentials, artifacts);
+            }
+        }
+
+        // Check nonce
+
+        options.nonceFunc(credentials.key, attributes.nonce, attributes.ts, (err) =&gt; {
+
+            if (err) {
+                return callback(Utils.unauthorized('Invalid nonce'), credentials, artifacts);
+            }
+
+            // Check timestamp staleness
+
+            if (Math.abs((attributes.ts * 1000) - now) &gt; (options.timestampSkewSec * 1000)) {
+                const tsm = Crypto.timestampMessage(credentials, options.localtimeOffsetMsec);
+                return callback(Utils.unauthorized('Stale timestamp', tsm), credentials, artifacts);
+            }
+
+            // Successful authentication
+
+            return callback(null, credentials, artifacts);
+        });
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// Create HTTP server
+
+const handler = function (req, res) {
+
+    // Authenticate incoming request
+
+    Hawk.server.<span class="apidocCodeKeywordSpan">authenticate</span>(req, credentialsFunc, {}, (err, credentials, artifacts) =&amp;#
+x3e; {
+
+// Prepare response
+
+const payload = (!err ? `Hello ${credentials.user} ${artifacts.ext}` : 'Shoosh!');
+const headers = { 'Content-Type': 'text/plain' };
+
+// Generate Server-Authorization response header
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.server.authenticateBewit" id="apidoc.element.hawk.server.authenticateBewit">
+        function <span class="apidocSignatureSpan">hawk.server.</span>authenticateBewit
+        <span class="apidocSignatureSpan">(req, credentialsFunc, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">authenticateBewit = function (req, credentialsFunc, options, callback) {
+
+    callback = Hoek.nextTick(callback);
+
+    // Application time
+
+    const now = Utils.now(options.localtimeOffsetMsec);
+
+    // Convert node Http request object to a request configuration object
+
+    const request = Utils.parseRequest(req, options);
+    if (request instanceof Error) {
+        return callback(Boom.badRequest(request.message));
+    }
+
+    // Extract bewit
+
+    if (request.url.length &gt; Utils.limits.maxMatchLength) {
+        return callback(Boom.badRequest('Resource path exceeds max length'));
+    }
+
+    const resource = request.url.match(internals.bewitRegex);
+    if (!resource) {
+        return callback(Utils.unauthorized());
+    }
+
+    // Bewit not empty
+
+    if (!resource[3]) {
+        return callback(Utils.unauthorized('Empty bewit'));
+    }
+
+    // Verify method is GET
+
+    if (request.method !== 'GET' &amp;&amp;
+        request.method !== 'HEAD') {
+
+        return callback(Utils.unauthorized('Invalid method'));
+    }
+
+    // No other authentication
+
+    if (request.authorization) {
+        return callback(Boom.badRequest('Multiple authentications'));
+    }
+
+    // Parse bewit
+
+    const bewitString = Hoek.base64urlDecode(resource[3]);
+    if (bewitString instanceof Error) {
+        return callback(Boom.badRequest('Invalid bewit encoding'));
+    }
+
+    // Bewit format: id\exp\mac\ext ('\' is used because it is a reserved header attribute character)
+
+    const bewitParts = bewitString.split('\\');
+    if (bewitParts.length !== 4) {
+        return callback(Boom.badRequest('Invalid bewit structure'));
+    }
+
+    const bewit = {
+        id: bewitParts[0],
+        exp: parseInt(bewitParts[1], 10),
+        mac: bewitParts[2],
+        ext: bewitParts[3] || ''
+    };
+
+    if (!bewit.id ||
+        !bewit.exp ||
+        !bewit.mac) {
+
+        return callback(Boom.badRequest('Missing bewit attributes'));
+    }
+
+    // Construct URL without bewit
+
+    let url = resource[1];
+    if (resource[4]) {
+        url = url + resource[2] + resource[4];
+    }
+
+    // Check expiration
+
+    if (bewit.exp * 1000 &lt;= now) {
+        return callback(Utils.unauthorized('Access expired'), null, bewit);
+    }
+
+    // Fetch Hawk credentials
+
+    credentialsFunc(bewit.id, (err, credentials) =&gt; {
+
+        if (err) {
+            return callback(err, credentials || null, bewit.ext);
+        }
+
+        if (!credentials) {
+            return callback(Utils.unauthorized('Unknown credentials'), null, bewit);
+        }
+
+        if (!credentials.key ||
+            !credentials.algorithm) {
+
+            return callback(Boom.internal('Invalid credentials'), credentials, bewit);
+        }
+
+        if (Crypto.algorithms.indexOf(credentials.algorithm) === -1) {
+            return callback(Boom.internal('Unknown algorithm'), credentials, bewit);
+        }
+
+        // Calculate MAC
+
+        const mac = Crypto.calculateMac('bewit', credentials, {
+            ts: bewit.exp,
+            nonce: '',
+            method: 'GET',
+            resource: url,
+            host: request.host,
+            port: request.port,
+            ext: bewit.ext
+        });
+
+        if (!Cryptiles.fixedTimeComparison(mac, bewit.mac)) {
+            return callback(Utils.unauthorized('Bad mac'), credentials, bewit);
+        }
+
+        // Successful authentication
+
+        return callback(null, credentials, bewit);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.server.authenticateMessage" id="apidoc.element.hawk.server.authenticateMessage">
+        function <span class="apidocSignatureSpan">hawk.server.</span>authenticateMessage
+        <span class="apidocSignatureSpan">(host, port, message, authorization, credentialsFunc, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">authenticateMessage = function (host, port, message, authorization, credentialsFunc, options, callback) {
+
+    callback = Hoek.nextTick(callback);
+
+    // Default options
+
+    options.nonceFunc = options.nonceFunc || internals.nonceFunc;
+    options.timestampSkewSec = options.timestampSkewSec || 60;                                                  // 60 seconds
+
+    // Application time
+
+    const now = Utils.now(options.localtimeOffsetMsec);                       // Measure now before any other processing
+
+    // Validate authorization
+
+    if (!authorization.id ||
+        !authorization.ts ||
+        !authorization.nonce ||
+        !authorization.hash ||
+        !authorization.mac) {
+
+        return callback(Boom.badRequest('Invalid authorization'));
+    }
+
+    // Fetch Hawk credentials
+
+    credentialsFunc(authorization.id, (err, credentials) =&gt; {
+
+        if (err) {
+            return callback(err, credentials || null);
+        }
+
+        if (!credentials) {
+            return callback(Utils.unauthorized('Unknown credentials'));
+        }
+
+        if (!credentials.key ||
+            !credentials.algorithm) {
+
+            return callback(Boom.internal('Invalid credentials'), credentials);
+        }
+
+        if (Crypto.algorithms.indexOf(credentials.algorithm) === -1) {
+            return callback(Boom.internal('Unknown algorithm'), credentials);
+        }
+
+        // Construct artifacts container
+
+        const artifacts = {
+            ts: authorization.ts,
+            nonce: authorization.nonce,
+            host,
+            port,
+            hash: authorization.hash
+        };
+
+        // Calculate MAC
+
+        const mac = Crypto.calculateMac('message', credentials, artifacts);
+        if (!Cryptiles.fixedTimeComparison(mac, authorization.mac)) {
+            return callback(Utils.unauthorized('Bad mac'), credentials);
+        }
+
+        // Check payload hash
+
+        const hash = Crypto.calculatePayloadHash(message, credentials.algorithm);
+        if (!Cryptiles.fixedTimeComparison(hash, authorization.hash)) {
+            return callback(Utils.unauthorized('Bad message hash'), credentials);
+        }
+
+        // Check nonce
+
+        options.nonceFunc(credentials.key, authorization.nonce, authorization.ts, (err) =&gt; {
+
+            if (err) {
+                return callback(Utils.unauthorized('Invalid nonce'), credentials);
+            }
+
+            // Check timestamp staleness
+
+            if (Math.abs((authorization.ts * 1000) - now) &gt; (options.timestampSkewSec * 1000)) {
+                return callback(Utils.unauthorized('Stale timestamp'), credentials);
+            }
+
+            // Successful authentication
+
+            return callback(null, credentials);
+        });
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.server.authenticatePayload" id="apidoc.element.hawk.server.authenticatePayload">
+        function <span class="apidocSignatureSpan">hawk.server.</span>authenticatePayload
+        <span class="apidocSignatureSpan">(payload, credentials, artifacts, contentType)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">authenticatePayload = function (payload, credentials, artifacts, contentType) {
+
+    const calculatedHash = Crypto.calculatePayloadHash(payload, credentials.algorithm, contentType);
+    return Cryptiles.fixedTimeComparison(calculatedHash, artifacts.hash);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.server.authenticatePayloadHash" id="apidoc.element.hawk.server.authenticatePayloadHash">
+        function <span class="apidocSignatureSpan">hawk.server.</span>authenticatePayloadHash
+        <span class="apidocSignatureSpan">(calculatedHash, artifacts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">authenticatePayloadHash = function (calculatedHash, artifacts) {
+
+    return Cryptiles.fixedTimeComparison(calculatedHash, artifacts.hash);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.server.header" id="apidoc.element.hawk.server.header">
+        function <span class="apidocSignatureSpan">hawk.server.</span>header
+        <span class="apidocSignatureSpan">(credentials, artifacts, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">header = function (credentials, artifacts, options) {
+
+    // Prepare inputs
+
+    options = options || {};
+
+    if (!artifacts ||
+        typeof artifacts !== 'object' ||
+        typeof options !== 'object') {
+
+        return '';
+    }
+
+    artifacts = Hoek.clone(artifacts);
+    delete artifacts.mac;
+    artifacts.hash = options.hash;
+    artifacts.ext = options.ext;
+
+    // Validate credentials
+
+    if (!credentials ||
+        !credentials.key ||
+        !credentials.algorithm) {
+
+        // Invalid credential object
+        return '';
+    }
+
+    if (Crypto.algorithms.indexOf(credentials.algorithm) === -1) {
+        return '';
+    }
+
+    // Calculate payload hash
+
+    if (!artifacts.hash &amp;&amp;
+        (options.payload || options.payload === '')) {
+
+        artifacts.hash = Crypto.calculatePayloadHash(options.payload, credentials.algorithm, options.contentType);
+    }
+
+    const mac = Crypto.calculateMac('response', credentials, artifacts);
+
+    // Construct header
+
+    let header = 'Hawk mac="' + mac + '"' +
+                 (artifacts.hash ? ', hash="' + artifacts.hash + '"' : '');
+
+    if (artifacts.ext !== null &amp;&amp;
+        artifacts.ext !== undefined &amp;&amp;
+        artifacts.ext !== '') {                       // Other falsey values allowed
+
+        header = header + ', ext="' + Hoek.escapeHeaderAttribute(artifacts.ext) + '"';
+    }
+
+    return header;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    // Prepare response
+
+    const payload = (!err ? `Hello ${credentials.user} ${artifacts.ext}` : 'Shoosh!');
+    const headers = { 'Content-Type': 'text/plain' };
+
+    // Generate Server-Authorization response header
+
+    const header = Hawk.server.<span class="apidocCodeKeywordSpan">header</span>(credentials, artifacts, { payload, contentType:
+headers['Content-Type'] });
+    headers['Server-Authorization'] = header;
+
+    // Send the response back
+
+    res.writeHead(!err ? 200 : 401, headers);
+    res.end(payload);
+});
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hawk.sntp" id="apidoc.module.hawk.sntp">module hawk.sntp</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.sntp.isLive" id="apidoc.element.hawk.sntp.isLive">
+        function <span class="apidocSignatureSpan">hawk.sntp.</span>isLive
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isLive = function () {
+
+    return !!internals.now.intervalId;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.sntp.now" id="apidoc.element.hawk.sntp.now">
+        function <span class="apidocSignatureSpan">hawk.sntp.</span>now
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">now = function () {
+
+    const now = Date.now();
+    if (!exports.isLive() ||
+        now &gt;= internals.last.expires) {
+
+        return now;
+    }
+
+    return now + internals.last.offset;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: 'aoijedoaijsdlaksjdl',
+    algorithm: 'sha256'                                 // 'sha1', 'sha256'
+},
+
+// Optional
+
+ext: 'application-specific',                        // Application specific data sent via the ext attribute
+timestamp: Date.<span class="apidocCodeKeywordSpan">now</span>() / 1000,                       // A pre-calculated timestamp in
+seconds
+nonce: '2334f34f',                                  // A pre-generated nonce
+localtimeOffsetMsec: 400,                           // Time offset to sync with server time (ignored if timestamp provided)
+payload: '{"some":"payload"}',                      // UTF-8 encoded string for body hash generation
+ (ignored if hash provided)
+contentType: 'application/json',                    // Payload content-type (ignored if hash provided)
+hash: 'U4MKKSmiVxk37JCCrAVIjV=',                    // Pre-calculated payload hash
+app: '24s23423f34dx',                               // Oz application id
+dlg: '234sz34tww3sd'                                // Oz delegated-by application id
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.sntp.offset" id="apidoc.element.hawk.sntp.offset">
+        function <span class="apidocSignatureSpan">hawk.sntp.</span>offset
+        <span class="apidocSignatureSpan">(options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">offset = function (options, callback) {
+
+    if (arguments.length !== 2) {
+        callback = arguments[0];
+        options = {};
+    }
+
+    const now = Date.now();
+    const clockSyncRefresh = options.clockSyncRefresh || 24 * 60 * 60 * 1000;                    // Daily
+
+    if (internals.last.offset &amp;&amp;
+        internals.last.host === options.host &amp;&amp;
+        internals.last.port === options.port &amp;&amp;
+        now &lt; internals.last.expires) {
+
+        process.nextTick(() =&gt; callback(null, internals.last.offset));
+        return;
+    }
+
+    exports.time(options, (err, time) =&gt; {
+
+        if (err) {
+            return callback(err, 0);
+        }
+
+        internals.last = {
+            offset: Math.round(time.t),
+            expires: now + clockSyncRefresh,
+            host: options.host,
+            port: options.port
+        };
+
+        return callback(null, internals.last.offset);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.sntp.start" id="apidoc.element.hawk.sntp.start">
+        function <span class="apidocSignatureSpan">hawk.sntp.</span>start
+        <span class="apidocSignatureSpan">(options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">start = function (options, callback) {
+
+    if (arguments.length !== 2) {
+        callback = arguments[0];
+        options = {};
+    }
+
+    if (internals.now.intervalId) {
+        process.nextTick(() =&gt; callback());
+        return;
+    }
+
+    exports.offset(options, (ignoreErr, offset) =&gt; {
+
+        internals.now.intervalId = setInterval(() =&gt; {
+
+            exports.offset(options, Hoek.ignore);
+        }, options.clockSyncRefresh || 24 * 60 * 60 * 1000);                                // Daily
+
+        return callback();
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+```
+
+**Hawk** utilized the [**SNTP**](https://github.com/hueniverse/sntp) module for time sync management. By default, the local
+machine time is used. To automatically retrieve and synchronize the clock within the application, use the SNTP 'start()'
+; method.
+
+```javascript
+Hawk.sntp.<span class="apidocCodeKeywordSpan">start</span>();
+```
+
+
+## Protocol Example
+
+The client attempts to access a protected resource without authentication, sending the following HTTP request to
+the resource server:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.sntp.stop" id="apidoc.element.hawk.sntp.stop">
+        function <span class="apidocSignatureSpan">hawk.sntp.</span>stop
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">stop = function () {
+
+    if (!internals.now.intervalId) {
+        return;
+    }
+
+    clearInterval(internals.now.intervalId);
+    internals.now.intervalId = 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.sntp.time" id="apidoc.element.hawk.sntp.time">
+        function <span class="apidocSignatureSpan">hawk.sntp.</span>time
+        <span class="apidocSignatureSpan">(options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">time = function (options, callback) {
+
+    if (arguments.length !== 2) {
+        callback = arguments[0];
+        options = {};
+    }
+
+    const settings = Hoek.clone(options);
+    settings.host = settings.host || 'pool.ntp.org';
+    settings.port = settings.port || 123;
+    settings.resolveReference = settings.resolveReference || false;
+
+    // Declare variables used by callback
+
+    let timeoutId = 0;
+    let sent = 0;
+
+    // Ensure callback is only called once
+
+    const finish = Hoek.once((err, result) =&gt; {
+
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = 0;
+        }
+
+        socket.removeAllListeners();
+        socket.once('error', Hoek.ignore);
+        socket.close();
+        return callback(err, result);
+    });
+
+    // Create UDP socket
+
+    const socket = Dgram.createSocket('udp4');
+
+    socket.once('error', (err) =&gt; finish(err));
+
+    // Listen to incoming messages
+
+    socket.on('message', (buffer, rinfo) =&gt; {
+
+        const received = Date.now();
+
+        const message = new internals.NtpMessage(buffer);
+        if (!message.isValid) {
+            return finish(new Error('Invalid server response'), message);
+        }
+
+        if (message.originateTimestamp !== sent) {
+            return finish(new Error('Wrong originate timestamp'), message);
+        }
+
+        // Timestamp Name          ID   When Generated
+        // ------------------------------------------------------------
+        // Originate Timestamp     T1   time request sent by client
+        // Receive Timestamp       T2   time request received by server
+        // Transmit Timestamp      T3   time reply sent by server
+        // Destination Timestamp   T4   time reply received by client
+        //
+        // The roundtrip delay d and system clock offset t are defined as:
+        //
+        // d = (T4 - T1) - (T3 - T2)     t = ((T2 - T1) + (T3 - T4)) / 2
+
+        const T1 = message.originateTimestamp;
+        const T2 = message.receiveTimestamp;
+        const T3 = message.transmitTimestamp;
+        const T4 = received;
+
+        message.d = (T4 - T1) - (T3 - T2);
+        message.t = ((T2 - T1) + (T3 - T4)) / 2;
+        message.receivedLocally = received;
+
+        if (!settings.resolveReference ||
+            message.stratum !== 'secondary') {
+
+            return finish(null, message);
+        }
+
+        // Resolve reference IP address
+
+        Dns.reverse(message.referenceId, (err, domains) =&gt; {
+
+            if (/* $lab:coverage:off$ */ !err /* $lab:coverage:on$ */) {
+                message.referenceHost = domains[0];
+            }
+
+            return finish(null, message);
+        });
+    });
+
+    // Set timeout
+
+    if (settings.timeout) {
+        timeoutId = setTimeout(() =&gt; {
+
+            timeoutId = 0;
+            return finish(new Error('Timeout'));
+        }, settings.timeout);
+    }
+
+    // Construct NTP message
+
+    const message = new Buffer(48);
+    for (let i = 0; i &lt; 48; ++i) {                      // Zero message
+        message[i] = 0;
+    }
+
+    message[0] = (0 &lt;&lt; 6) + (4 &lt;&lt; 3) + (3 &lt;&lt; 0);        // Set version number to 4 and Mode to 3 (client)
+    sent = Date.now();
+    internals.fromMsecs(sent, message, 40);             // Set transmit timestamp (returns as originate)
+
+    // Send NTP request
+
+    socket.send(message, 0, message.length, settings.port, settings.host, (err, bytes) =&gt; {
+
+        if (err ||
+            bytes !== 48) {
+
+            return finish(err || new Error('Could not send entire message'));
+        }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hawk.uri" id="apidoc.module.hawk.uri">module hawk.uri</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.uri.authenticate" id="apidoc.element.hawk.uri.authenticate">
+        function <span class="apidocSignatureSpan">hawk.uri.</span>authenticate
+        <span class="apidocSignatureSpan">(req, credentialsFunc, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">authenticate = function (req, credentialsFunc, options, callback) {
+
+    callback = Hoek.nextTick(callback);
+
+    // Application time
+
+    const now = Utils.now(options.localtimeOffsetMsec);
+
+    // Convert node Http request object to a request configuration object
+
+    const request = Utils.parseRequest(req, options);
+    if (request instanceof Error) {
+        return callback(Boom.badRequest(request.message));
+    }
+
+    // Extract bewit
+
+    if (request.url.length &gt; Utils.limits.maxMatchLength) {
+        return callback(Boom.badRequest('Resource path exceeds max length'));
+    }
+
+    const resource = request.url.match(internals.bewitRegex);
+    if (!resource) {
+        return callback(Utils.unauthorized());
+    }
+
+    // Bewit not empty
+
+    if (!resource[3]) {
+        return callback(Utils.unauthorized('Empty bewit'));
+    }
+
+    // Verify method is GET
+
+    if (request.method !== 'GET' &amp;&amp;
+        request.method !== 'HEAD') {
+
+        return callback(Utils.unauthorized('Invalid method'));
+    }
+
+    // No other authentication
+
+    if (request.authorization) {
+        return callback(Boom.badRequest('Multiple authentications'));
+    }
+
+    // Parse bewit
+
+    const bewitString = Hoek.base64urlDecode(resource[3]);
+    if (bewitString instanceof Error) {
+        return callback(Boom.badRequest('Invalid bewit encoding'));
+    }
+
+    // Bewit format: id\exp\mac\ext ('\' is used because it is a reserved header attribute character)
+
+    const bewitParts = bewitString.split('\\');
+    if (bewitParts.length !== 4) {
+        return callback(Boom.badRequest('Invalid bewit structure'));
+    }
+
+    const bewit = {
+        id: bewitParts[0],
+        exp: parseInt(bewitParts[1], 10),
+        mac: bewitParts[2],
+        ext: bewitParts[3] || ''
+    };
+
+    if (!bewit.id ||
+        !bewit.exp ||
+        !bewit.mac) {
+
+        return callback(Boom.badRequest('Missing bewit attributes'));
+    }
+
+    // Construct URL without bewit
+
+    let url = resource[1];
+    if (resource[4]) {
+        url = url + resource[2] + resource[4];
+    }
+
+    // Check expiration
+
+    if (bewit.exp * 1000 &lt;= now) {
+        return callback(Utils.unauthorized('Access expired'), null, bewit);
+    }
+
+    // Fetch Hawk credentials
+
+    credentialsFunc(bewit.id, (err, credentials) =&gt; {
+
+        if (err) {
+            return callback(err, credentials || null, bewit.ext);
+        }
+
+        if (!credentials) {
+            return callback(Utils.unauthorized('Unknown credentials'), null, bewit);
+        }
+
+        if (!credentials.key ||
+            !credentials.algorithm) {
+
+            return callback(Boom.internal('Invalid credentials'), credentials, bewit);
+        }
+
+        if (Crypto.algorithms.indexOf(credentials.algorithm) === -1) {
+            return callback(Boom.internal('Unknown algorithm'), credentials, bewit);
+        }
+
+        // Calculate MAC
+
+        const mac = Crypto.calculateMac('bewit', credentials, {
+            ts: bewit.exp,
+            nonce: '',
+            method: 'GET',
+            resource: url,
+            host: request.host,
+            port: request.port,
+            ext: bewit.ext
+        });
+
+        if (!Cryptiles.fixedTimeComparison(mac, bewit.mac)) {
+            return callback(Utils.unauthorized('Bad mac'), credentials, bewit);
+        }
+
+        // Successful authentication
+
+        return callback(null, credentials, bewit);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// Create HTTP server
+
+const handler = function (req, res) {
+
+    // Authenticate incoming request
+
+    Hawk.server.<span class="apidocCodeKeywordSpan">authenticate</span>(req, credentialsFunc, {}, (err, credentials, artifacts) =&amp;#
+x3e; {
+
+// Prepare response
+
+const payload = (!err ? `Hello ${credentials.user} ${artifacts.ext}` : 'Shoosh!');
+const headers = { 'Content-Type': 'text/plain' };
+
+// Generate Server-Authorization response header
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.uri.getBewit" id="apidoc.element.hawk.uri.getBewit">
+        function <span class="apidocSignatureSpan">hawk.uri.</span>getBewit
+        <span class="apidocSignatureSpan">(uri, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getBewit = function (uri, options) {
+
+    // Validate inputs
+
+    if (!uri ||
+        (typeof uri !== 'string' &amp;&amp; typeof uri !== 'object') ||
+        !options ||
+        typeof options !== 'object' ||
+        !options.ttlSec) {
+
+        return '';
+    }
+
+    options.ext = (options.ext === null || options.ext === undefined ? '' : options.ext);       // Zero is valid value
+
+    // Application time
+
+    const now = Utils.now(options.localtimeOffsetMsec);
+
+    // Validate credentials
+
+    const credentials = options.credentials;
+    if (!credentials ||
+        !credentials.id ||
+        !credentials.key ||
+        !credentials.algorithm) {
+
+        return '';
+    }
+
+    if (Crypto.algorithms.indexOf(credentials.algorithm) === -1) {
+        return '';
+    }
+
+    // Parse URI
+
+    if (typeof uri === 'string') {
+        uri = Url.parse(uri);
+    }
+
+    // Calculate signature
+
+    const exp = Math.floor(now / 1000) + options.ttlSec;
+    const mac = Crypto.calculateMac('bewit', credentials, {
+        ts: exp,
+        nonce: '',
+        method: 'GET',
+        resource: uri.pathname + (uri.search || ''),                            // Maintain trailing '?'
+        host: uri.hostname,
+        port: uri.port || (uri.protocol === 'http:' ? 80 : 443),
+        ext: options.ext
+    });
+
+    // Construct bewit: id\exp\mac\ext
+
+    const bewit = credentials.id + '\\' + exp + '\\' + mac + '\\' + options.ext;
+    return Hoek.base64urlEncode(bewit);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: 'werxhqb98rpaxn39848xrunpaw3489ruxnpa98w4rxn',
+    algorithm: 'sha256'
+}
+
+// Generate bewit
+
+const duration = 60 * 5;      // 5 Minutes
+const bewit = Hawk.uri.<span class="apidocCodeKeywordSpan">getBewit</span>('http://example.com:8000/resource/1?b=1&amp;a=2
+', { credentials: credentials, ttlSec: duration, ext: 'some-app-data' });
+const uri = 'http://example.com:8000/resource/1?b=1&amp;a=2' + '&amp;bewit=' + bewit;
+
+// Output URI
+
+console.log('URI: ' + uri);
+```
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hawk.utils" id="apidoc.module.hawk.utils">module hawk.utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.utils.now" id="apidoc.element.hawk.utils.now">
+        function <span class="apidocSignatureSpan">hawk.utils.</span>now
+        <span class="apidocSignatureSpan">(localtimeOffsetMsec)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">now = function (localtimeOffsetMsec) {
+
+    return Sntp.now() + (localtimeOffsetMsec || 0);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: 'aoijedoaijsdlaksjdl',
+    algorithm: 'sha256'                                 // 'sha1', 'sha256'
+},
+
+// Optional
+
+ext: 'application-specific',                        // Application specific data sent via the ext attribute
+timestamp: Date.<span class="apidocCodeKeywordSpan">now</span>() / 1000,                       // A pre-calculated timestamp in
+seconds
+nonce: '2334f34f',                                  // A pre-generated nonce
+localtimeOffsetMsec: 400,                           // Time offset to sync with server time (ignored if timestamp provided)
+payload: '{"some":"payload"}',                      // UTF-8 encoded string for body hash generation
+ (ignored if hash provided)
+contentType: 'application/json',                    // Payload content-type (ignored if hash provided)
+hash: 'U4MKKSmiVxk37JCCrAVIjV=',                    // Pre-calculated payload hash
+app: '24s23423f34dx',                               // Oz application id
+dlg: '234sz34tww3sd'                                // Oz delegated-by application id
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.utils.nowSecs" id="apidoc.element.hawk.utils.nowSecs">
+        function <span class="apidocSignatureSpan">hawk.utils.</span>nowSecs
+        <span class="apidocSignatureSpan">(localtimeOffsetMsec)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">nowSecs = function (localtimeOffsetMsec) {
+
+    return Math.floor(exports.now(localtimeOffsetMsec) / 1000);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.utils.parseAuthorizationHeader" id="apidoc.element.hawk.utils.parseAuthorizationHeader">
+        function <span class="apidocSignatureSpan">hawk.utils.</span>parseAuthorizationHeader
+        <span class="apidocSignatureSpan">(header, keys)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseAuthorizationHeader = function (header, keys) {
+
+    keys = keys || ['id', 'ts', 'nonce', 'hash', 'ext', 'mac', 'app', 'dlg'];
+
+    if (!header) {
+        return Boom.unauthorized(null, 'Hawk');
+    }
+
+    if (header.length &gt; exports.limits.maxMatchLength) {
+        return Boom.badRequest('Header length too long');
+    }
+
+    const headerParts = header.match(internals.authHeaderRegex);
+    if (!headerParts) {
+        return Boom.badRequest('Invalid header syntax');
+    }
+
+    const scheme = headerParts[1];
+    if (scheme.toLowerCase() !== 'hawk') {
+        return Boom.unauthorized(null, 'Hawk');
+    }
+
+    const attributesString = headerParts[2];
+    if (!attributesString) {
+        return Boom.badRequest('Invalid header syntax');
+    }
+
+    const attributes = {};
+    let errorMessage = '';
+    const verify = attributesString.replace(/(\w+)="([^"\\]*)"\s*(?:,\s*|$)/g, ($0, $1, $2) =&gt; {
+
+        // Check valid attribute names
+
+        if (keys.indexOf($1) === -1) {
+            errorMessage = 'Unknown attribute: ' + $1;
+            return;
+        }
+
+        // Allowed attribute value characters
+
+        if ($2.match(internals.attributeRegex) === null) {
+            errorMessage = 'Bad attribute value: ' + $1;
+            return;
+        }
+
+        // Check for duplicates
+
+        if (attributes.hasOwnProperty($1)) {
+            errorMessage = 'Duplicate attribute: ' + $1;
+            return;
+        }
+
+        attributes[$1] = $2;
+        return '';
+    });
+
+    if (verify !== '') {
+        return Boom.badRequest(errorMessage || 'Bad header format');
+    }
+
+    return attributes;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        };
+
+        const wwwAuthenticate = getHeader('www-authenticate');
+        if (wwwAuthenticate) {
+
+// Parse HTTP WWW-Authenticate header
+
+const wwwAttributes = hawk.utils.<span class="apidocCodeKeywordSpan">parseAuthorizationHeader</span>(wwwAuthenticate, ['ts&amp;#
+x27;, 'tsm', 'error']);
+if (!wwwAttributes) {
+    return false;
+}
+
+if (wwwAttributes.ts) {
+    const tsm = hawk.crypto.calculateTsMac(wwwAttributes.ts, credentials);
+    if (tsm !== wwwAttributes.tsm) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.utils.parseContentType" id="apidoc.element.hawk.utils.parseContentType">
+        function <span class="apidocSignatureSpan">hawk.utils.</span>parseContentType
+        <span class="apidocSignatureSpan">(header)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseContentType = function (header) {
+
+    if (!header) {
+        return '';
+    }
+
+    return header.split(';')[0].trim().toLowerCase();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return normalized;
+},
+
+calculatePayloadHash: function (payload, algorithm, contentType) {
+
+    const hash = CryptoJS.algo[algorithm.toUpperCase()].create();
+    hash.update('hawk.' + hawk.crypto.headerVersion + '.payload\n');
+    hash.update(hawk.utils.<span class="apidocCodeKeywordSpan">parseContentType</span>(contentType) + '\n');
+    hash.update(payload);
+    hash.update('\n');
+    return hash.finalize().toString(CryptoJS.enc.Base64);
+},
+
+calculateTsMac: function (ts, credentials) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.utils.parseHost" id="apidoc.element.hawk.utils.parseHost">
+        function <span class="apidocSignatureSpan">hawk.utils.</span>parseHost
+        <span class="apidocSignatureSpan">(req, hostHeaderName)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseHost = function (req, hostHeaderName) {
+
+    hostHeaderName = (hostHeaderName ? hostHeaderName.toLowerCase() : 'host');
+    const hostHeader = req.headers[hostHeaderName];
+    if (!hostHeader) {
+        return null;
+    }
+
+    if (hostHeader.length &gt; exports.limits.maxMatchLength) {
+        return null;
+    }
+
+    const hostParts = hostHeader.match(internals.hostHeaderRegex);
+    if (!hostParts) {
+        return null;
+    }
+
+    return {
+        name: hostParts[1],
+        port: (hostParts[2] ? hostParts[2] : (req.connection &amp;&amp; req.connection.encrypted ? 443 : 80))
+    };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.utils.parseRequest" id="apidoc.element.hawk.utils.parseRequest">
+        function <span class="apidocSignatureSpan">hawk.utils.</span>parseRequest
+        <span class="apidocSignatureSpan">(req, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseRequest = function (req, options) {
+
+    if (!req.headers) {
+        return req;
+    }
+
+    // Obtain host and port information
+
+    let host;
+    if (!options.host ||
+        !options.port) {
+
+        host = exports.parseHost(req, options.hostHeaderName);
+        if (!host) {
+            return new Error('Invalid Host header');
+        }
+    }
+
+    const request = {
+        method: req.method,
+        url: req.url,
+        host: options.host || host.name,
+        port: options.port || host.port,
+        authorization: req.headers.authorization,
+        contentType: req.headers['content-type'] || ''
+    };
+
+    return request;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.utils.unauthorized" id="apidoc.element.hawk.utils.unauthorized">
+        function <span class="apidocSignatureSpan">hawk.utils.</span>unauthorized
+        <span class="apidocSignatureSpan">(message, attributes)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">unauthorized = function (message, attributes) {
+
+    return Boom.unauthorized(message || null, 'Hawk', attributes);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hawk.utils.version" id="apidoc.element.hawk.utils.version">
+        function <span class="apidocSignatureSpan">hawk.utils.</span>version
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">version = function () {
+
+    return require('../package.json').version;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
