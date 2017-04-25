@@ -1,6 +1,6 @@
 # npmdoc-hawk
 
-#### api documentation for  [hawk (v6.0.1)](https://github.com/hueniverse/hawk#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-hawk.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-hawk) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-hawk.svg)](https://travis-ci.org/npmdoc/node-npmdoc-hawk)
+#### basic api documentation for  [hawk (v6.0.1)](https://github.com/hueniverse/hawk#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-hawk.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-hawk) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-hawk.svg)](https://travis-ci.org/npmdoc/node-npmdoc-hawk)
 
 #### HTTP Hawk Authentication Scheme
 
