@@ -823,7 +823,23 @@
 
     return internals.create(400, message, data, exports.badRequest);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+const now = Utils.now(options.localtimeOffsetMsec);                           // Measure now before any other processing
+
+// Convert node Http request object to a request configuration object
+
+const request = Utils.parseRequest(req, options);
+if (request instanceof Error) {
+    return callback(Boom.<span class="apidocCodeKeywordSpan">badRequest</span>(request.message));
+}
+
+// Parse HTTP Authorization header
+
+const attributes = Utils.parseAuthorizationHeader(request.authorization);
+if (attributes instanceof Error) {
+    return callback(attributes);
+...</pre></li>
     </ul>
 
 
@@ -877,9 +893,9 @@
     return normalized;
 },
 
-calculatePayloadHash: function (payload, algorithm, contentType) {
+calculatePayloadHash: function calculatePayloadHash(payload, algorithm, contentType) {
 
-    const hash = CryptoJS.algo[algorithm.toUpperCase()].<span class="apidocCodeKeywordSpan">create</span>();
+    var hash = CryptoJS.algo[algorithm.toUpperCase()].<span class="apidocCodeKeywordSpan">create</span>();
     hash.update('hawk.' + hawk.crypto.headerVersion + '.payload\n');
     hash.update(hawk.utils.parseContentType(contentType) + '\n');
     hash.update(payload);
@@ -982,7 +998,24 @@ calculatePayloadHash: function (payload, algorithm, contentType) {
 
     return internals.serverError(message, data, statusCode, exports.internal);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if (!credentials) {
+    return callback(Utils.unauthorized('Unknown credentials'), null, artifacts);
+}
+
+if (!credentials.key ||
+    !credentials.algorithm) {
+
+    return callback(Boom.<span class="apidocCodeKeywordSpan">internal</span>('Invalid credentials'), credentials, artifacts
+);
+}
+
+if (Crypto.algorithms.indexOf(credentials.algorithm) === -1) {
+    return callback(Boom.internal('Unknown algorithm'), credentials, artifacts);
+}
+
+// Calculate MAC
+...</pre></li>
     </ul>
 
 
@@ -1319,7 +1352,24 @@ calculatePayloadHash: function (payload, algorithm, contentType) {
 
     return err;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    credentialsFunc(attributes.id, (err, credentials) =&gt; {
+
+if (err) {
+    return callback(err, credentials || null, artifacts);
+}
+
+if (!credentials) {
+    return callback(Utils.<span class="apidocCodeKeywordSpan">unauthorized</span>('Unknown credentials'), null, artifacts
+);
+}
+
+if (!credentials.key ||
+    !credentials.algorithm) {
+
+    return callback(Boom.internal('Invalid credentials'), credentials, artifacts);
+}
+...</pre></li>
     </ul>
 
 
@@ -1782,22 +1832,25 @@ headers['Content-Type'] });
     return digest;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
+// Calculate payload hash
 
-if (!artifacts.hash &amp;&amp;
-    (options.payload || options.payload === '')) {
+if (!artifacts.hash &amp;&amp; (options.payload || options.payload === '')) {
 
     artifacts.hash = hawk.crypto.calculatePayloadHash(options.payload, credentials.algorithm, options.contentType);
 }
 
-const mac = hawk.crypto.<span class="apidocCodeKeywordSpan">calculateMac</span>('header', credentials, artifacts);
+var mac = hawk.crypto.<span class="apidocCodeKeywordSpan">calculateMac</span>('header', credentials, artifacts);
 
 // Construct header
 
-const hasExt = artifacts.ext !== null &amp;&amp; artifacts.ext !== undefined &amp;&amp; artifacts.ext !== '';       //
-Other falsey values allowed
-let header = 'Hawk id="' + credentials.id +
-             '", ts="' + artifacts.ts +
-             '", nonce="' + artifacts.nonce +
+var hasExt = artifacts.ext !== null &amp;&amp; artifacts.ext !== undefined &amp;&amp; artifacts.ext !== ''; // Other
+ falsey values allowed
+var header = 'Hawk id="' + credentials.id + '", ts="' + artifacts.ts + '", nonce=&amp;#
+x22;' + artifacts.nonce + (artifacts.hash ? '", hash="' + artifacts.hash : '') + (hasExt ? &amp;#
+x27;", ext="' + hawk.utils.escapeHeaderAttribute(artifacts.ext) : '') + '", mac="' +
+mac + '"';
+
+if (artifacts.app) {
 ...</pre></li>
     </ul>
 
@@ -1817,23 +1870,23 @@ let header = 'Hawk id="' + credentials.id +
     return exports.finalizePayloadHash(hash);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
+
 result.artifacts = artifacts;
 
 // Calculate payload hash
 
-if (!artifacts.hash &amp;&amp;
-    (options.payload || options.payload === '')) {
+if (!artifacts.hash &amp;&amp; (options.payload || options.payload === '')) {
 
     artifacts.hash = hawk.crypto.<span class="apidocCodeKeywordSpan">calculatePayloadHash</span>(options.payload, credentials.algorithm
 , options.contentType);
 }
 
-const mac = hawk.crypto.calculateMac('header', credentials, artifacts);
+var mac = hawk.crypto.calculateMac('header', credentials, artifacts);
 
 // Construct header
 
-const hasExt = artifacts.ext !== null &amp;&amp; artifacts.ext !== undefined &amp;&amp; artifacts.ext !== '';       //
-Other falsey values allowed
+var hasExt = artifacts.ext !== null &amp;&amp; artifacts.ext !== undefined &amp;&amp; artifacts.ext !== ''; // Other
+ falsey values allowed
 ...</pre></li>
     </ul>
 
@@ -1854,19 +1907,18 @@ Other falsey values allowed
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-    const wwwAttributes = hawk.utils.parseAuthorizationHeader(wwwAuthenticate, ['ts', 'tsm', 'error'
-;]);
+    var wwwAttributes = hawk.utils.parseAuthorizationHeader(wwwAuthenticate, ['ts', 'tsm', 'error']);
     if (!wwwAttributes) {
         return false;
     }
 
     if (wwwAttributes.ts) {
-        const tsm = hawk.crypto.<span class="apidocCodeKeywordSpan">calculateTsMac</span>(wwwAttributes.ts, credentials);
+        var tsm = hawk.crypto.<span class="apidocCodeKeywordSpan">calculateTsMac</span>(wwwAttributes.ts, credentials);
         if (tsm !== wwwAttributes.tsm) {
             return false;
         }
 
-        hawk.utils.setNtpSecOffset(wwwAttributes.ts - Math.floor(Date.now() / 1000));      // Keep offset at 1 second precision
+        hawk.utils.setNtpSecOffset(wwwAttributes.ts - Math.floor(Date.now() / 1000)); // Keep offset at 1 second precision
     }
 }
 ...</pre></li>
@@ -1886,7 +1938,23 @@ Other falsey values allowed
     hash.update('\n');
     return hash.digest('base64');
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+
+
+exports.calculatePayloadHash = function (payload, algorithm, contentType) {
+
+const hash = exports.initializePayloadHash(algorithm, contentType);
+hash.update(payload || '');
+return exports.<span class="apidocCodeKeywordSpan">finalizePayloadHash</span>(hash);
+};
+
+
+exports.initializePayloadHash = function (algorithm, contentType) {
+
+const hash = Crypto.createHash(algorithm);
+hash.update('hawk.' + exports.headerVersion + '.payload\n');
+...</pre></li>
     </ul>
 
 
@@ -1936,15 +2004,15 @@ headerVersion: '1',
 
 algorithms: ['sha1', 'sha256'],
 
-calculateMac: function (type, credentials, options) {
+calculateMac: function calculateMac(type, credentials, options) {
 
-    const normalized = hawk.crypto.<span class="apidocCodeKeywordSpan">generateNormalizedString</span>(type, options);
+    var normalized = hawk.crypto.<span class="apidocCodeKeywordSpan">generateNormalizedString</span>(type, options);
 
-    const hmac = CryptoJS['Hmac' + credentials.algorithm.toUpperCase()](normalized, credentials.key);
+    var hmac = CryptoJS['Hmac' + credentials.algorithm.toUpperCase()](normalized, credentials.key);
     return hmac.toString(CryptoJS.enc.Base64);
 },
 
-generateNormalizedString: function (type, options) {
+generateNormalizedString: function generateNormalizedString(type, options) {
 ...</pre></li>
     </ul>
 
@@ -1964,7 +2032,22 @@ generateNormalizedString: function (type, options) {
     hash.update(Utils.parseContentType(contentType) + '\n');
     return hash;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    return normalized;
+};
+
+
+exports.calculatePayloadHash = function (payload, algorithm, contentType) {
+
+    const hash = exports.<span class="apidocCodeKeywordSpan">initializePayloadHash</span>(algorithm, contentType);
+    hash.update(payload || '');
+    return exports.finalizePayloadHash(hash);
+};
+
+
+exports.initializePayloadHash = function (algorithm, contentType) {
+...</pre></li>
     </ul>
 
 
@@ -1982,7 +2065,23 @@ generateNormalizedString: function (type, options) {
     const tsm = exports.calculateTsMac(now, credentials);
     return { ts: now, tsm };
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    if (err) {
+        return callback(Utils.unauthorized('Invalid nonce'), credentials, artifacts);
+    }
+
+    // Check timestamp staleness
+
+    if (Math.abs((attributes.ts * 1000) - now) &gt; (options.timestampSkewSec * 1000)) {
+        const tsm = Crypto.<span class="apidocCodeKeywordSpan">timestampMessage</span>(credentials, options.localtimeOffsetMsec);
+        return callback(Utils.unauthorized('Stale timestamp', tsm), credentials, artifacts);
+    }
+
+    // Successful authentication
+
+    return callback(null, credentials, artifacts);
+});
+...</pre></li>
     </ul>
 
 
@@ -2546,13 +2645,13 @@ headers['Content-Type'] });
     return now + internals.last.offset;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
+ credentials: {
+    id: 'dh37fgj492je',
     key: 'aoijedoaijsdlaksjdl',
     algorithm: 'sha256'                                 // 'sha1', 'sha256'
 },
-
-// Optional
-
-ext: 'application-specific',                        // Application specific data sent via the ext attribute
+ // Optional
+ ext: 'application-specific',                        // Application specific data sent via the ext attribute
 timestamp: Date.<span class="apidocCodeKeywordSpan">now</span>() / 1000,                       // A pre-calculated timestamp in
 seconds
 nonce: '2334f34f',                                  // A pre-generated nonce
@@ -3089,13 +3188,13 @@ console.log('URI: ' + uri);
     return Sntp.now() + (localtimeOffsetMsec || 0);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
+ credentials: {
+    id: 'dh37fgj492je',
     key: 'aoijedoaijsdlaksjdl',
     algorithm: 'sha256'                                 // 'sha1', 'sha256'
 },
-
-// Optional
-
-ext: 'application-specific',                        // Application specific data sent via the ext attribute
+ // Optional
+ ext: 'application-specific',                        // Application specific data sent via the ext attribute
 timestamp: Date.<span class="apidocCodeKeywordSpan">now</span>() / 1000,                       // A pre-calculated timestamp in
 seconds
 nonce: '2334f34f',                                  // A pre-generated nonce
@@ -3122,7 +3221,23 @@ dlg: '234sz34tww3sd'                                // Oz delegated-by applicati
 
     return Math.floor(exports.now(localtimeOffsetMsec) / 1000);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    result.err = 'Invalid argument type';
+    return result;
+}
+
+// Application time
+
+const timestamp = options.timestamp || Utils.<span class="apidocCodeKeywordSpan">nowSecs</span>(options.localtimeOffsetMsec);
+
+// Validate credentials
+
+const credentials = options.credentials;
+if (!credentials ||
+    !credentials.id ||
+    !credentials.key ||
+...</pre></li>
     </ul>
 
 
@@ -3199,19 +3314,19 @@ dlg: '234sz34tww3sd'                                // Oz delegated-by applicati
     <li>example usage<pre class="apidocCodePre">...
         };
 
-        const wwwAuthenticate = getHeader('www-authenticate');
+        var wwwAuthenticate = getHeader('www-authenticate');
         if (wwwAuthenticate) {
 
 // Parse HTTP WWW-Authenticate header
 
-const wwwAttributes = hawk.utils.<span class="apidocCodeKeywordSpan">parseAuthorizationHeader</span>(wwwAuthenticate, ['ts&amp;#
-x27;, 'tsm', 'error']);
+var wwwAttributes = hawk.utils.<span class="apidocCodeKeywordSpan">parseAuthorizationHeader</span>(wwwAuthenticate, ['ts'
+;, 'tsm', 'error']);
 if (!wwwAttributes) {
     return false;
 }
 
 if (wwwAttributes.ts) {
-    const tsm = hawk.crypto.calculateTsMac(wwwAttributes.ts, credentials);
+    var tsm = hawk.crypto.calculateTsMac(wwwAttributes.ts, credentials);
     if (tsm !== wwwAttributes.tsm) {
 ...</pre></li>
     </ul>
@@ -3237,9 +3352,9 @@ if (wwwAttributes.ts) {
     return normalized;
 },
 
-calculatePayloadHash: function (payload, algorithm, contentType) {
+calculatePayloadHash: function calculatePayloadHash(payload, algorithm, contentType) {
 
-    const hash = CryptoJS.algo[algorithm.toUpperCase()].create();
+    var hash = CryptoJS.algo[algorithm.toUpperCase()].create();
     hash.update('hawk.' + hawk.crypto.headerVersion + '.payload\n');
     hash.update(hawk.utils.<span class="apidocCodeKeywordSpan">parseContentType</span>(contentType) + '\n');
     hash.update(payload);
@@ -3247,7 +3362,7 @@ calculatePayloadHash: function (payload, algorithm, contentType) {
     return hash.finalize().toString(CryptoJS.enc.Base64);
 },
 
-calculateTsMac: function (ts, credentials) {
+calculateTsMac: function calculateTsMac(ts, credentials) {
 ...</pre></li>
     </ul>
 
@@ -3282,7 +3397,23 @@ calculateTsMac: function (ts, credentials) {
         port: (hostParts[2] ? hostParts[2] : (req.connection &amp;&amp; req.connection.encrypted ? 443 : 80))
     };
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// Obtain host and port information
+
+let host;
+if (!options.host ||
+    !options.port) {
+
+    host = exports.<span class="apidocCodeKeywordSpan">parseHost</span>(req, options.hostHeaderName);
+    if (!host) {
+        return new Error('Invalid Host header');
+    }
+}
+
+const request = {
+    method: req.method,
+...</pre></li>
     </ul>
 
 
@@ -3323,7 +3454,23 @@ calculateTsMac: function (ts, credentials) {
 
     return request;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// Application time
+
+const now = Utils.now(options.localtimeOffsetMsec);                           // Measure now before any other processing
+
+// Convert node Http request object to a request configuration object
+
+const request = Utils.<span class="apidocCodeKeywordSpan">parseRequest</span>(req, options);
+if (request instanceof Error) {
+    return callback(Boom.badRequest(request.message));
+}
+
+// Parse HTTP Authorization header
+
+const attributes = Utils.parseAuthorizationHeader(request.authorization);
+...</pre></li>
     </ul>
 
 
@@ -3339,7 +3486,24 @@ calculateTsMac: function (ts, credentials) {
 
     return Boom.unauthorized(message || null, 'Hawk', attributes);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    credentialsFunc(attributes.id, (err, credentials) =&gt; {
+
+if (err) {
+    return callback(err, credentials || null, artifacts);
+}
+
+if (!credentials) {
+    return callback(Utils.<span class="apidocCodeKeywordSpan">unauthorized</span>('Unknown credentials'), null, artifacts
+);
+}
+
+if (!credentials.key ||
+    !credentials.algorithm) {
+
+    return callback(Boom.internal('Invalid credentials'), credentials, artifacts);
+}
+...</pre></li>
     </ul>
 
 
